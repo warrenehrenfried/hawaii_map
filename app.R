@@ -6,14 +6,14 @@
 #
 #    http://shiny.rstudio.com/
 #
-
+#Happy Halloween
 library(shiny)
 library(leaflet)
 library(dplyr)
 library(leaflet.extras)
 
 # import data
-data <- read.csv('Data_Files/tidydata/kil_haw_data.csv')
+data <- read.csv('tidydata/kil_haw_data.csv')
 
 # Define UI for application 
 ui <- fluidPage(
