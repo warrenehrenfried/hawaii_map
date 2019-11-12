@@ -1,17 +1,21 @@
-library(dataRetrieval)
+library(dataRetrieval) # package that reads and downloads water data from USGS Water Quality Portal website
 library(dplyr)
 
-water_data <- readWQPdata(statecode="Hawaii", 
-                        countycode = 001, 
-                        siteType = "Stream",
-                        SampleMedia = "Water",
-                        characteristictype="Inorganics, Major, Metals")
+
+# read in desired data: Inorganic cations/anions in stream water, on Big Island, Hawaii
+water_data <- readWQPdata(statecode ="Hawaii", 
+                          countycode = "Hawaii County", 
+                          SiteType = "Stream",
+                          SampleMedia = "Water",
+                          CharacteristicType ="Inorganics, Major, Metals")
+
 unique(water_data$ResultMeasure.MeasureUnitCode)
 
-siteInfo <- attr(phosData, "siteInfo")
+# data fram with site info: name, lat/long, drainage area, etc
+siteInfo <- attr(water_data, "siteInfo")
 
-wiSummary <- phosData %>%
-  filter(ResultMeasure.MeasureUnitCode %in% c("mg/l","mg/l as P")) %>%
+Summary <- water_data %>%
+  filter(ResultMeasure.MeasureUnitCode %in% "mg/l") %>%
   group_by(MonitoringLocationIdentifier) %>%
   summarise(count=n(),
             start=min(ActivityStartDateTime),
