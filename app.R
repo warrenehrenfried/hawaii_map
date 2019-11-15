@@ -6,7 +6,7 @@
 #
 #    http://shiny.rstudio.com/
 #
-#Happy Halloween
+
 library(shiny)
 library(leaflet)
 library(dplyr)
