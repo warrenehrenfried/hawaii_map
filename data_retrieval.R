@@ -36,8 +36,9 @@ Hawaii_water_data <- siteData %>%
          "WellDepthMeasure.MeasureUnitCode",
          "LatitudeMeasure",
          "LongitudeMeasure") %>%
-  filter(ResultMeasure.MeasureUnitCode %in% c("mg/l", 'mg/l CaCO3', 'mg/l as Na'), 
-         ResultSampleFractionText != "Total") %>%
+  filter(ResultMeasure.MeasureUnitCode %in% c("mg/l", 'mg/l CaCO3', 'mg/l as Na'),
+         ResultSampleFractionText != "Total",
+         CharacteristicName == "Sulfate") %>%
   distinct() %>%
   group_by(MonitoringLocationIdentifier)
 
